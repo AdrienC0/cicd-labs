@@ -9,6 +9,7 @@ import pytest
 
 from minishop.pricing import line_total, money, quote
 
+x=1
 
 pytestmark = pytest.mark.unit
 
