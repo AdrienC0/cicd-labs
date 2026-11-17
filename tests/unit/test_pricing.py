@@ -9,7 +9,7 @@ import pytest
 
 from minishop.pricing import line_total, money, quote
 
-x=1
+if True: print("test Ruff")
 
 pytestmark = pytest.mark.unit
 
@@ -41,11 +41,11 @@ def test_quantite_invalide(qty):
 
 def test_line_total_remise_volume():
     """10 mugs à 12,50 € : remise de 5 % sur le total."""
-    assert line_total(Decimal("12.50"), 10) == Decimal("118.75")  # 125 - 6,25    
+    assert line_total(Decimal("12.50"), 10) == Decimal("118.75") # 125 - 6,25
 
 def test_line_total_remise_volume_9():
     """9 mugs à 12,50 € : pas de remise."""
-    assert line_total(Decimal("12.50"), 9) == Decimal("112.50")  # pas de remise   
+    assert line_total(Decimal("12.50"), 9) == Decimal("112.50") # pas de remise
 
 @pytest.mark.parametrize("coupon", ["WELCOME10", "welcome10", " Welcome10 "])
 def test_coupon_welcome10_casse(coupon):
