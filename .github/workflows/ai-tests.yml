@@ -1,3 +1,30 @@
+name: AI tests
+
+on:
+  workflow_dispatch:
+
 permissions:
   contents: read
-  pull-requests: write  # pour commenter la PR
+  pull-requests: write
+
+jobs:
+  run-llm:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v4
+
+      - name: Installer Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Installer les dépendances
+        run: pip install -r requirements-dev.txt
+
+      - name: Appeler le LLM
+        env:
+          LLM_PROVIDER: anthropic
+          LLM_MODEL: claude-haiku-5-5
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+        run: python ai_tools/llm.py
